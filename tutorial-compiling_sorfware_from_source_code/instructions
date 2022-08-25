@@ -1,0 +1,11 @@
+
+
+When an administrator downloads software, there is a common process to build the executable file called software compilation.
+
+    Unpack the download, typically using tar and/or gzip commands.
+    Change into the directory that gets created as part of the unpacking process.
+    Run the ./configure command to gather system information needed by the application. This information is stored in the makefile, which is referenced during the next step.
+    Use the make command to compile the application using the information stored in the makefile. Note that this usually requires root privileges.
+    Use the make install command to install the resulting binaries (the application).
+
+

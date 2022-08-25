@@ -1,0 +1,102 @@
+# Introduction To using Git
+
+Git is a version control system. 
+
+## Initial Setup
+
+### Install Git
+
+First we need to check if Git is install and if not install it.
+
+The following will show the version of Git if it is install.
+
+```
+git --version
+```
+
+If Git is not installed, you can install it on APT managed linux systems with the following.
+
+```
+sudo apt update && sudo apt install git
+```
+
+On DNF managed linux systems
+
+```
+sudo dnf install git
+```
+
+### Configure Global Identity Information
+
+
+```
+git config --global user.name "first_name last_name"
+git config --global user.email "example@email.ex"
+```
+
+### Configure other basic defaults
+
+``` 
+git config --global init.defaultBranch main
+git config --global core.editor vim
+```
+
+### Checking Git Setting
+
+To check the configurations made and where they are stored.
+
+```
+git config --list --show-origin
+```
+
+## Initialize A Repository
+
+First make or navigate to the folder you wish to monitor with git. This folder will become a Git "repository".
+
+```
+mkdir my-git-repo
+cd my-git-repo
+```
+
+To initialize Git on the folder you are in
+
+```
+git init
+```
+
+### Check The Status Of Git On Your New Repository
+
+If you had files in the folder you should see them as untracked files.
+
+```
+ls
+git status
+```
+
+## Add Files To A Repository For Tracking
+
+### Start Tracking Existing Files
+
+To start tracking the all files you currently have in the folder containing your Git repository.
+
+```
+git add --all
+git status
+```
+
+Notice the files are now track and are staged to be commited.
+
+### Add a README.md 
+
+A README.md file describes the repository
+
+```
+echo "This is a example repository for learning the basic commands of Git" >> README.md
+git add README.md
+git status
+```
+
+
+
+
+

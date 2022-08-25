@@ -1,0 +1,48 @@
+
+
+The apt commands for installing and removing software are:
+
+$ apt install {software-package}
+
+$ apt remove {software-package}
+
+Subcommands such as show and version display specific information about the package, allowing administrators to see version, installation information, and source for the package.
+
+$ apt show {software-package}
+
+$ apt version {software package}
+
+Sometimes security auditors or sysadmins need to create a comprehensive list of installed software. The apt list command displays such results. For example, to see all installed software on a system, type:
+
+$ apt list --installed
+
+
+Manage Dependencies with APT
+
+Like the RPM package managers, APT can automatically install all necessary dependencies for a given package. This option is -f (force), and the syntax is:
+
+$ apt -f install {software-package}
+
+
+
+First, update APT with information about newer versions of available software as compared to the packages already installed. This does not update the actual software. The command is:
+
+$ apt update
+
+Once APT is aware of available software, it checks that software against the current installations. By using the upgrade subcommand, administrators can upgrade any or all packages to current versions. The apt command for upgrading is:
+
+$ apt upgrade {package-name}
+
+
+
+Installing software with dpkg uses a syntax similar to other package manager commands:
+
+$ dpkg -i {package-name}
+
+Removing the software likewise has a similar look:
+
+$ dpkg -r {package-name}
+
+
+$ sudo apt show {package-name}
+

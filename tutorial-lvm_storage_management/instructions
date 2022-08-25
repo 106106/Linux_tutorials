@@ -1,0 +1,191 @@
+Physical Volume Tool
+	
+
+Purpose
+
+pvscan
+	
+
+Scan for all physical devices that are being used as physical volumes
+
+pvcreate
+	
+
+Initialize a drive or partition to use as a physical volume
+
+pvdisplay
+	
+
+List attributes of physical volumes
+
+pvchange
+	
+
+Change attributes of a physical volume
+
+pvs
+	
+
+Display information about physical volumes
+
+pvck
+	
+
+Check the metadata of physical volumes
+
+pvremove
+	
+
+Remove physical volumes
+
+Volume Group Tool
+	
+
+Purpose
+
+vgscan
+	
+
+Scan all physical devices for volume groups
+
+vgcreate
+	
+
+Create volume groups
+
+vgdisplay
+	
+
+List attributes of volume groups
+
+vgchange
+	
+
+Change attributes of volume groups
+
+vgs
+	
+
+Display information about volume groups
+
+vgck
+	
+
+Check the metadata of volume groups
+
+vgrename
+	
+
+Rename a volume group
+
+vgreduce
+	
+
+Remove physical volumes from a volume group to reduce its size
+
+vgextend
+	
+
+Add physical volumes to volume groups
+
+vgmerge
+	
+
+Merge two volume groups
+
+vgsplit
+	
+
+Split a volume group into two
+
+vgremove
+	
+
+Remove volume groups
+
+Logical Volume Tool
+	
+
+Purpose
+
+lvscan
+	
+
+Scan all physical devices for logical volumes
+
+lvcreate
+	
+
+Create logical volumes in a volume group
+
+lvdisplay
+	
+
+List attributes of logical volumes
+
+lvchange
+	
+
+Change attributes of logical volumes
+
+lvs
+	
+
+Display information about logical volumes
+
+lvrename
+	
+
+Rename logical volumes
+
+lvreduce
+	
+
+Reduce the size of logical volumes
+
+lvextend
+	
+
+Extend the size of logical volumes
+
+lvresize
+	
+
+Resize logical volumes
+
+lvremove
+	
+
+Remove logical volumes
+
+
+
+
+
+
+eploying the LVM
+
+First, designate the two drives as LVM physical volumes by using the pvcreate command followed by the path to the partitions:
+
+# pvcreate /dev/sdb
+
+# pvcreate /dev/sdc
+
+# pvdisplay
+
+The pvdisplay command allows you to confirm the configuration by displaying the current settings.
+
+Next, create a volume group named vg_projects containing the two physical volumes designated above (/dev/sdb and /dev/sdc):
+
+# vgcreate vg_projects /dev/sdb /dev/sdbc
+
+# vgdisplay
+
+
+
+Create a logical volume named projects consisting of 500G of storage capacity within the vg_projects volume group:
+
+# lvcreate --name projects --size 500G vg_projects
+
+# lvdisplay
+

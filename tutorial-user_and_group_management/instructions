@@ -1,0 +1,26 @@
+# Adding Users
+
+## adduser command
+
+### Step 1: Adding a normal user with no options 
+
+```
+sudo adduser user01
+*Enter the password for sudo priviledges*
+*Enter a password for user01*
+*Re-type the password for user01*
+ENTER
+ENTER
+ENTER
+ENTER
+ENTER
+Y
+```
+
+Verify the results of `sudo adduser user01`
+
+```
+ls /home
+grep user01 /etc/passwd
+```
+

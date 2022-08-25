@@ -1,0 +1,140 @@
+apt show nmap
+
+
+Each package manager has its own related commands, and those commands cover the three major parts of the software lifecycle (installation, maintenance, and removal). Some basic examples are:
+
+    $ rpm -i {software-package}
+    $ rpm -U {software-package}
+    $ rpm -e {software-package}
+    $ apt install {software-package}
+    $ apt upgrade {software-package}
+    $ apt remove {software-package}
+
+dnf check-update
+dnf repolist
+dnf search nmap
+dnf install nmap
+dnf remove nmap
+
+
+apt-get update
+apt install tshark
+
+
+
+Some examples of those options are:
+
+    $ zypper install {software-package}
+    $ zypper update {software-package}
+    $ zypper remove {software-package}
+
+
+
+Here is an example of using RPM to manage a software package that installs the Z shell (assume the zsh.rpm package has been downloaded to the system, and the present working directory is the download location).
+
+This command installs the software in verbose mode and provides a progress bar to track the installation process:
+
+$ rpm -ivh zsh.rpm
+
+This command does two things. It will update the package on a system that already has the package installed. It will also install the package on a system that does not currently have it. To accomplish either of these, type:
+
+$ rpm -Uvh zsh.rpm
+
+This command will update an existing package, if installed, but it will not install the package if it is not already present:
+
+$ rpm -Fvh zsh.rpm
+
+The importance of upgrade (-U) versus freshen (-F) may be difficult to visualize when thinking of a single system. On a single computer, you're likely to know whether the specific software package is present. However, the real importance of these two options is clear when the rpm command is used in scripts that maintain software on many systems. A single script may be used to manage software on 20 systems, some of which are supposed to have the software and some of which are not.
+
+Removing the zsh.rpm package is just as simple. The progress bar and verbose options may be used to track the removal process as well:
+
+$ rpm -evh zsh.rpm
+
+
+
+The syntax to verify software with the rpm command is:
+
+$ rpm -V {package-name}
+
+
+
+The following command installs the zsh package and automatically installs any packages it depends on:
+
+$ yum -y install zsh
+
+
+
+An example with a YUM package:
+
+$ yum update zsh.rpm
+
+
+
+An example with a YUM package:
+
+$ yum update zsh.rpm
+
+The YUM package manager can also display or report available updates without installing them. This is useful for seeing what is available without making any changes.
+
+The command to check for updates for all installed packages is:
+
+$ yum check-update
+
+This may generate a lot of output. If there is a specific package that you want to check for updates, add the package name as an argument:
+
+$ yum check-update {package-name}
+
+To remove software by using YUM, type:
+
+$ yum remove {package-name}
+
+
+
+To install the zsh package by using the dnf command, type:
+
+$ dnf install zsh
+
+Like yum, the dnf command recognizes the -y option as an "assume yes" for dependency queries, making the installation process far more streamlined. It also means that any script used to automate software installations can also install any necessary packages.
+
+The dnf list installed command displays installed software on the system.
+
+The upgrade subcommand checks the configured repositories for updated software and installs the newer versions. For example, to upgrade all software on the system, type:
+
+$ dnf upgrade
+
+Use the remove subcommand to uninstall a software package:
+
+$ dnf remove zsh
+
+The autoremove subcommand removes the software package but also uninstalls any dependencies that were installed with the package and are no longer necessary. By using autoremove, sysadmins can help keep systems from being cluttered with software that is no longer necessary.
+
+a single package group to be installed as a unit:
+
+
+$ dnf group install virtualization
+
+dnf history
+
+
+
+The syntax to display all installed software is:
+
+$ rpm -qa > softwarelist.txt
+
+
+
+The syntax to display information about a specified package is:
+
+$ rpm - qi {package-name}
+he yum command to display installed software is:
+
+$ yum list installed
+
+The command to display information on a specified package using YUM is:
+
+$ yum info {package-name}
+The related DNF commands to satisfy such a query are:
+
+$ dnf list installed
+
+$ dnf info {package-name

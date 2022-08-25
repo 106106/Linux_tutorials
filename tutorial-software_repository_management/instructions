@@ -1,0 +1,13 @@
+apt-key
+
+add-apt-repository
+
+apt update
+
+
+dnf config-manager --add-repo "https://url......"
+
+
+dnf config-manager --set-enabled package 
+
+
