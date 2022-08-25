@@ -56,6 +56,7 @@ First make or navigate to the folder you wish to monitor with git. This folder w
 ```
 mkdir my-git-repo
 cd my-git-repo
+touch test{1,2,3,4,5}.txt
 ```
 
 To initialize Git on the folder you are in
@@ -96,7 +97,38 @@ git add README.md
 git status
 ```
 
+## Commit Changes
 
+### Initial Commit
 
+Preform an initial commit for your new repository. This will be the starting point of your version control.
 
+```
+git commit -m "Initial project version"
+```
+
+### Commit History
+
+View the commit you just made. You can use this to view a history commits for the repository.
+
+```
+git log
+```
+
+## Create A Branch
+
+Check the status of git again. Notice we are on the main branch.
+
+```
+git status
+```
+
+Create a new branch and move to that branch
+
+```
+git branch my-new-branch
+git branch
+git checkout my-new-branch
+git status
+```
 
