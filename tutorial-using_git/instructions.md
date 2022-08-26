@@ -1,4 +1,4 @@
-# Introduction To using Git
+# Introduction To Git
 
 Git is a version control system. 
 
@@ -6,9 +6,7 @@ Git is a version control system.
 
 ### Install Git
 
-First we need to check if Git is install and if not install it.
-
-The following will show the version of Git if it is install.
+First we need to check if Git is installed and if not install it. The following will show the version of Git if it is install.
 
 ```
 git --version
@@ -20,7 +18,7 @@ If Git is not installed, you can install it on APT managed linux systems with th
 sudo apt update && sudo apt install git
 ```
 
-On DNF managed linux systems
+On DNF managed linux systems you can install Git using:
 
 ```
 sudo dnf install git
@@ -41,9 +39,9 @@ git config --global init.defaultBranch main
 git config --global core.editor vim
 ```
 
-### Checking Git Setting
+### Check Git Setting
 
-To check the configurations made and where they are stored.
+To check the configuration setting we just made and where they are stored.
 
 ```
 git config --list --show-origin
@@ -196,7 +194,7 @@ git branch
 git merge my-new-branch
 ```
 
-## Delete A Unused Branch
+## Delete An Unused Branch
 
 Since we've just merged "my-new-branch" with "main" we no longer need "my-new-branch". Let's delete it.
 
@@ -205,5 +203,42 @@ git branch -d my-new-branch
 git branch
 ```
 
-testtest
+## Merge Conflicting Branchs
+
+Let's create a change on main and a new branch "my-second-branch" which conflict and see what happens when we try to merge the two branchs.
+
+### Create A Change On Main
+
+Note: we are skipping the staging environment.
+
+```
+echo "conflict on main" >> test3.txt
+cat test3.txt
+git commit -a -m "Created change on main to conflict with a change on my-second-branch"
+git status
+```
+
+### Create A Change On "my-second-branch"
+
+Create a new branch, make a change, and commit the change.
+
+```
+git branch my-second-branch
+git checkout my-second-branch
+echo "conflict on my-second-branch" >> test3.txt
+cat test3.txt
+git commit -a -m "Created change on my-second-branch to conflict with change on main"
+git status
+git checkout main
+git status
+```
+
+### Attempt to merger the Conflicting Branchs
+
+```
+git merge my-second-branch
+git status
+```
+
+
 
