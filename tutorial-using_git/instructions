@@ -117,6 +117,8 @@ git log
 
 ## Create A Branch
 
+### Create and Move To A New branch
+
 Check the status of git again. Notice we are on the main branch.
 
 ```
@@ -132,5 +134,76 @@ git checkout my-new-branch
 git status
 ```
 
+### Make Changes To The New Branch
 
-testtesttest
+Create some new files and make changes to exiting files.
+
+
+```
+echo "branch test1" >> test1.txt
+cat test1.txt
+touch branchtest2.txt
+ls
+git status
+git add --all
+git status
+git branch
+git commit -m "Commiting test changes to new branch"
+```
+
+### Notice The Differences Between Branchs
+
+```
+git branch
+ls
+grep -iR "branchtest" .
+git checkout main
+git branch
+ls
+grep -iR "branchtest" .
+git status
+```
+
+## Merge A branch
+
+### Create Non-Conflicting Changes On Main
+
+Let's make a change to main which doesn't conflict with the changes on "my-new-branch" for demonstration purposes.
+
+```
+echo "non-conflicting change on main" >> test2.txt
+cat test2.txt
+git add test2.txt
+git commit -m "created a non-conflicting change on main"
+git status
+```
+
+Let's double check the change didn't affect "my-new-branch"
+
+```
+git checkout my-new-branch
+grep -iR "non-conflicting" .
+cat test2.txt
+```
+
+### Merge Non-conflicting Branchs
+
+Since "my-new-branch" was a direct child of main and no conflicting changes were made to main we can do a simple "Fast-forward" merge. Make sure we are on main, and then merge "my-new-branch" with main.
+
+```
+git checkout main
+git branch
+git merge my-new-branch
+```
+
+## Delete A Unused Branch
+
+Since we've just merged "my-new-branch" with "main" we no longer need "my-new-branch". Let's delete it.
+
+```
+git branch -d my-new-branch
+git branch
+```
+
+
+
