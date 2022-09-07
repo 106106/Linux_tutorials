@@ -12,7 +12,7 @@ First we need to check if Git is installed and if not install it. The following 
 git --version
 ```
 
-![Version Check Output](./version_check.png)
+![Version Check Output](./screenshots/version_check.png)
 
 If Git is not installed, you can install it on APT managed linux systems with the following.
 
@@ -34,12 +34,16 @@ git config --global user.name "first_name last_name"
 git config --global user.email "example@email.ex"
 ```
 
+![Configuring User Name and Email](./screenshots/config_user.png)
+
 ### Configure other basic defaults
 
 ``` 
 git config --global init.defaultBranch main
 git config --global core.editor vim
 ```
+
+![Configure Defaults](./screenshots/config_defaults.png)
 
 ### Check Git Setting
 
@@ -48,6 +52,9 @@ To check the configuration setting we just made and where they are stored.
 ```
 git config --list --show-origin
 ```
+
+![Displaying configurations](./screenshots/show_configs.png)
+
 ## Getting Help
 
 Before we go further a very useful command is the help command. The syntax is `git help <command>`. For example, to get help and learn about `git config` commands you can enter:
