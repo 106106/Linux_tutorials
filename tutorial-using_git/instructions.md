@@ -82,11 +82,15 @@ ls
 pwd
 ```
 
+![Making The Folder For The Repo](./screenshots/make_repo_folder.png)
+
 To initialize Git on the folder you are in
 
 ```
 git init
 ```
+
+![Initializing The Repo](./screenshots/git_init.png)
 
 ### Check The Status Of Git On Your New Repository
 
@@ -96,6 +100,8 @@ If you had files in the folder you should see them as untracked files.
 ls
 git status
 ```
+
+![Status Before Tracking Files](./screenshots/pre_adding_files.png)
 
 ## Add Files To A Repository For Tracking
 
@@ -107,6 +113,8 @@ To start tracking the all files you currently have in the folder containing your
 git add --all
 git status
 ```
+
+![Status After Adding Files](./screenshots/post_adding_files.png)
 
 Notice the files are now track and are staged to be commited.
 
@@ -121,6 +129,9 @@ git add README.md
 git status
 ```
 
+![Status after creating another file](./screenshots/status_pre_additional_file_add.png)
+![Status after tracking another file](./screenshots/status_post_additional_file_add.png)
+
 ## Commit Changes
 
 ### Initial Commit
@@ -131,6 +142,8 @@ Preform an initial commit for your new repository. This will be the starting poi
 git commit -m "Initial project version"
 ```
 
+![Output of first commit](./screenshots/first_commit.png)
+
 ### Commit History
 
 View the commit you just made. You can use this to view a history commits for the repository.
@@ -138,6 +151,8 @@ View the commit you just made. You can use this to view a history commits for th
 ```
 git log
 ```
+
+![Commit Log So Far](./screenshots/commit_log.png)
 
 ## Create A Branch
 
@@ -149,6 +164,8 @@ Check the status of git again. Notice we are on the main branch.
 git status
 ```
 
+![Status after first commit](./screenshots/status_after_first_commit.png)
+
 Create a new branch and move to that branch
 
 ```
@@ -158,6 +175,8 @@ git checkout my-new-branch
 git branch
 git status
 ```
+
+![Creating a new branch](./screenshots/create_first_branch.png)
 
 ### Make Changes To The New Branch
 
@@ -176,6 +195,8 @@ git branch
 git commit -m "Commiting test changes to new branch"
 ```
 
+![Making changes to the new branch](./screenshots/changes_on_first_branch.png)
+
 ### Notice The Differences Between Branchs
 
 ```
@@ -188,6 +209,8 @@ ls
 grep -iR "branch test" .
 git status
 ```
+
+![Display the differences between branchs](./screenshots/diff_between_first_branch.png)
 
 ## Merge A branch
 
@@ -205,6 +228,8 @@ git commit -m "Created a change on main for demo-ing a non-conflicting merge"
 git status
 ```
 
+![Non-conflicting Change On Main](./screenshots/non_conflicting_on_main.png)
+
 Let's double check the change didn't affect "my-new-branch"
 
 ```
@@ -212,6 +237,8 @@ git checkout my-new-branch
 grep -iR "non-conflicting change" .
 cat test2.txt
 ```
+
+![Double Check My-New-Branch](./screenshots/check_my-new-branch.png)
 
 ### Merge Non-conflicting Branchs
 
@@ -222,6 +249,8 @@ git checkout main
 git branch
 git merge my-new-branch -m "practice merge of non-conflicting branches"
 ```
+
+![Merging Non-conflicting Branches](./screenshots/non-conflicting_merge.png)
 
 Notice both changes are now part of main.
 
@@ -239,6 +268,8 @@ git branch -d my-new-branch
 git branch
 ```
 
+![Deleting an unused Branch](./screenshots/delete_branch.png)
+
 ## Merge Conflicting Branchs
 
 Let's create a change on main and a new branch "my-second-branch" which conflict and see what happens when we try to merge the two branchs.
@@ -249,6 +280,8 @@ Let's create a change on main and a new branch "my-second-branch" which conflict
 git branch my-second-branch
 git branch
 ```
+
+![Creating a second new branch](./screenshots/create_second_new_branch.png)
 
 ### Create A Change On Main
 
@@ -261,9 +294,11 @@ git commit -a -m "Created change on main to conflict with a change on my-second-
 git status
 ```
 
+![Creating a conflicting change on main](./screenshots/conflict_change_on_main.png)
+
 ### Create A Change On "my-second-branch"
 
-Create a new branch, make a change, and commit the change.
+Move to new branch, make a conflicting change, and commit the change.
 
 ```
 git checkout my-second-branch
@@ -275,12 +310,16 @@ git checkout main
 git status
 ```
 
+![Creating a conflicting change on my-second-branch](./screenshots/conflict_change_on_second.png)
+
 ### Attempt to Merger The Conflicting Branchs
 
 ```
 git merge my-second-branch -m "Merging conflicting branchs"
 git status
 ```
+
+![Attempting to merge conflicting change](./screenshots/attempt_merge_conflict.png)
 
 Notice git alerts you of the conflicts and asks to resolve the conflict before merging can continue.
 
@@ -296,6 +335,9 @@ git status
 git commit -m "Fixed merge conflict"
 git status
 ```
+
+![Fixing the conflict and commiting the merge](./screenshots/fix_and_merge_conflict.png)
+
 
 # Introduction To Git Part 2
 
