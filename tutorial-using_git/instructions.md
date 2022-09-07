@@ -1,4 +1,4 @@
-# Introduction To Git
+# Introduction To Git Part 1
 
 Git is a version control system. 
 
@@ -11,6 +11,8 @@ First we need to check if Git is installed and if not install it. The following 
 ```
 git --version
 ```
+
+![Version Check Output](./version_check.png)
 
 If Git is not installed, you can install it on APT managed linux systems with the following.
 
@@ -46,6 +48,19 @@ To check the configuration setting we just made and where they are stored.
 ```
 git config --list --show-origin
 ```
+## Getting Help
+
+Before we go further a very useful command is the help command. The syntax is `git help <command>`. For example, to get help and learn about `git config` commands you can enter:
+
+```
+git help config
+```
+
+For a more concise reminder of command option you can use
+
+```
+git config -h
+```
 
 ## Initialize A Repository
 
@@ -53,8 +68,11 @@ First make or navigate to the folder you wish to monitor with git. This folder w
 
 ```
 mkdir my-git-repo
+ls
 cd my-git-repo
-touch test{1,2,3,4,5}.txt
+touch test{1,2,3,4,5,6,7,8,9}.txt
+ls
+pwd
 ```
 
 To initialize Git on the folder you are in
@@ -87,10 +105,11 @@ Notice the files are now track and are staged to be commited.
 
 ### Add a README.md 
 
-A README.md file describes the repository
+A README.md file describes the repository. 
 
 ```
 echo "This is a example repository for learning the basic commands of Git" >> README.md
+git status
 git add README.md
 git status
 ```
@@ -129,6 +148,7 @@ Create a new branch and move to that branch
 git branch my-new-branch
 git branch
 git checkout my-new-branch
+git branch
 git status
 ```
 
@@ -138,9 +158,9 @@ Create some new files and make changes to exiting files.
 
 
 ```
-echo "branch test1" >> test1.txt
+echo "branch test" >> test1.txt
 cat test1.txt
-touch branchtest2.txt
+touch newFileOnBranch
 ls
 git status
 git add --all
@@ -154,11 +174,11 @@ git commit -m "Commiting test changes to new branch"
 ```
 git branch
 ls
-grep -iR "branchtest" .
+grep -iR "branch test" .
 git checkout main
 git branch
 ls
-grep -iR "branchtest" .
+grep -iR "branch test" .
 git status
 ```
 
@@ -169,10 +189,12 @@ git status
 Let's make a change to main which doesn't conflict with the changes on "my-new-branch" for demonstration purposes.
 
 ```
+git branch
 echo "non-conflicting change on main" >> test2.txt
 cat test2.txt
+git status
 git add test2.txt
-git commit -m "created a non-conflicting change on main"
+git commit -m "Created a change on main for demo-ing a non-conflicting merge"
 git status
 ```
 
@@ -180,7 +202,7 @@ Let's double check the change didn't affect "my-new-branch"
 
 ```
 git checkout my-new-branch
-grep -iR "non-conflicting" .
+grep -iR "non-conflicting change" .
 cat test2.txt
 ```
 
@@ -191,7 +213,14 @@ Since "my-new-branch" was a direct child of main and no conflicting changes were
 ```
 git checkout main
 git branch
-git merge my-new-branch
+git merge my-new-branch -m "practice merge of non-conflicting branches"
+```
+
+Notice both changes are now part of main.
+
+```
+cat test1.txt
+cat test2.txt
 ```
 
 ## Delete An Unused Branch
@@ -206,6 +235,13 @@ git branch
 ## Merge Conflicting Branchs
 
 Let's create a change on main and a new branch "my-second-branch" which conflict and see what happens when we try to merge the two branchs.
+
+### Create A New Branch
+
+```
+git branch my-second-branch
+git branch
+```
 
 ### Create A Change On Main
 
@@ -223,7 +259,6 @@ git status
 Create a new branch, make a change, and commit the change.
 
 ```
-git branch my-second-branch
 git checkout my-second-branch
 echo "conflict on my-second-branch" >> test3.txt
 cat test3.txt
@@ -233,12 +268,89 @@ git checkout main
 git status
 ```
 
-### Attempt to merger the Conflicting Branchs
+### Attempt to Merger The Conflicting Branchs
 
 ```
-git merge my-second-branch
+git merge my-second-branch -m "Merging conflicting branchs"
+git status
+```
+
+Notice git alerts you of the conflicts and asks to resolve the conflict before merging can continue.
+
+### Fix The Conflict
+
+Look for the diff and bring the branchs into agreement.
+
+```
+echo "Fixed conflict" > test3.txt
+cat test3.txt
+git add test3.txt
+git status
+git commit -m "Fixed merge conflict"
+git status
+```
+
+# Introduction To Git Part 2
+
+## Working With A Remote Repository
+
+For this we are going to GitHub. Create a GitHub account. Once you have created a GitHub account, create a new repository. Name the repository "tutorial-test-repo" and keep the defaults for now.
+
+### Push A Local Repository To GitHub 
+
+```
+git remote add origin git@github.com:106106/tutorial-test-repo.git
+git branch -M main
+git push -u origin main
+```
+
+### Fetch Changes From GitHub
+
+Edit test4.txt on GitHub. 
+
+Now Fetch updates for your local git from GitHub.
+
+```
+git fetch origin
+git status
+git log origin
+git diff origin
+```
+
+### Merge Updates To Local Repository
+
+We can think of the local and remote repositories as just branches, so now that we've confirmed there are updates we want from the remote repository in our local repository we can merge the two.
+
+```
+git merge origin
+git status
+```
+
+### Pull A Repository To Local
+
+`pull` is a combination of `fetch` and `merge`. Make another change on GitHub to test4.txt. Now in one step we pull the change to our local repository.
+
+```
+git status
+git pull origin
+git status
+```
+
+### Push Changes To A Remote Repository
+
+Make changes to test5.txt in the local repository.
+
+```
+git status
+git push origin
 git status
 ```
 
 
 
+
+# References
+
+1. GitHub
+2. https://git-scm.com/book/en/v2
+3. https://www.w3schools.com/git/
