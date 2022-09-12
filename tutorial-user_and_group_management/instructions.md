@@ -505,6 +505,73 @@ id user02
 
 ![Deleting non-empty group](./screenshots/groupdel_group02_nonempty.png)
 
+## passwd command
+
+### Display the passwd status of a user
+
+```
+sudo grep "user03" /etc/passwd
+sudo passwd -S user03
+```
+
+![Displaying the passwd status of a user](./screenshots/passwd_status_user03.png)
+
+### Removing/Deleting a user's passwd
+
+Displaying the status of user03's passwd. It is starts off locked. Then we remove their password. We display the status again. It changed from L locked to NP for no passwd. We log in as user03 without needing to provide a passwd. We set a passwd for user03 and exit. Display the status again. It now indicates a password is set. We finally double check that we most provide a password to login.
+
+```
+sudo passwd -S user03
+sudo passwd -d user03
+sudo passwd -S user03
+su - user03
+passwd
+*ENTER NEW PASSWORD*
+*RE-ENTER NEW PASSWORD*
+exit
+sudo passwd -S user03
+su - user03
+*ENTER PASSWORD*
+exit
+```
+
+![Testing out what deleting a user passwd does](./screenshot/passwd_delete_user03.png)
+
+### Expire a user's password
+
+```
+sudo passwd -S user03
+sudo passwd -e user03
+sudo passwd -S user03
+su - user03
+*ENTER NEW PASSWORD*
+*RE-ENTER NEW PASSWORD*
+exit
+sudo passwd -e user03
+su - user03
+exit
+sudo passwd -S user03
+```
+
+Note: The user won't be able to just re-enter the same password. It checks, but if other checks are not configured they can just change it back after.
+
+![Expiring a user's passwd](./screenshots/passwd_expire_user03.png)
+
+### Unlock a user's password
+
+```
+sudo grep "user03" /etc/shadow
+sudo passwd -S user03
+sudo passwd -l user03
+sudo grep "user03" /etc/shadow
+sudo passwd -S user03
+sudo passwd -u user03
+sudo grep "user03 /etc/shadow
+sudo passwd -S user03
+```
+
+![Unlocking the password for user03](./screenshots/passwd_unlock_user03.png)
+
 
 # References
 
