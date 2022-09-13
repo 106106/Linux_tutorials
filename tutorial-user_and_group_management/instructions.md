@@ -572,6 +572,63 @@ sudo passwd -S user03
 
 ![Unlocking the password for user03](./screenshots/passwd_unlock_user03.png)
 
+## gpasswd command
+
+### Add a user to a group
+
+First let re-create some groups and users
+
+```
+sudo useradd -m member01
+sudo useradd -m member02
+sudo useradd -m -u 1333 member03
+sudo useradd -m -u 1444 member04
+tail -n 4 /etc/passwd
+sudo groupadd group01
+sudo addgroup group02
+sudo groupadd -g 3333 group03
+sudo addgroup -gid 4444 group04
+tail -n 8 /etc/group
+```
+
+![Preping for adding users to groups](./screenshots/prep_for_gpasswd.png)
+
+Now let add a user to a group
+
+```
+id member01
+id member02
+sudo gpasswd -a member01 group01
+sudo gpasswd -a member02 group02
+id member01
+id member02
+tail -n 4 /etc/group
+```
+![Adding users to groups](.screenshots/gpasswd_add_m12.png)
+
+### Set a list of group members
+
+```
+tail -n 4 /etc/group
+sudo gpasswd -M member01r,member02,member03,member04 group03
+sudo gpasswd -M member04 group04
+tail -n 4 /etc/group
+id member01
+```
+
+![Adding a list of users to a group](./screenshots/gpasswd_add_list.png)
+
+### Removing a user from a group
+
+```
+tail -n 4 /etc/group
+id member04
+sudo gpasswd -d member04 group03
+tail -n 4 /etc/group
+id member04
+```
+
+![Removing member04 from group03](./screenshots/gpasswd_remove_member04.png)
 
 # References
 
