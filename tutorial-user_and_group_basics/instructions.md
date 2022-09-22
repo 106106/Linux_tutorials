@@ -278,7 +278,7 @@ sudo grep user02 /etc/shadow
 
 ![Output of useradd with no options](./screenshots/useradd_user02.png)
 
-Notice the ! mark for user02's password and that the home directory for user02 is /home/user02but the directory was not actually created.
+Notice the ! mark for user02's password and that the home directory for user02 is /home/user02 but the directory was not actually created.
 
 ### useradd create home dir
 
@@ -309,7 +309,7 @@ id user04
 
 ## groupadd command
 
-### groupadd with no comments
+### groupadd with no options
 
 ```
 groupadd group01
