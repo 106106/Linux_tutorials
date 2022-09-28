@@ -1,3 +1,24 @@
+# Basic Storage Management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Storage Deployment Summary
 
 Because there are many steps necessary to add storage capacity to a Linux system, it's useful to see a summary of the process:
