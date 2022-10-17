@@ -129,4 +129,96 @@ sudo vgs vg_1
 
 ![Extending a Volume group](./screenshots/extend_vg1.png)
 
+### Rename a Volume Group
+
+```
+sudo vgs
+sudo vgscan
+sudo vgrename vg_1 data-vg
+sudo vgs
+sudo vgscan
+```
+
+![Renaming a Volume Group](./screenshots/rename_vg1.png)
+
+## Logical Volumes
+
+### Create a Logical Volume
+
+```
+sudo lvs
+sudo lvscan
+sudo lvcreate --size 15G -n data-lv data-vg
+sudo lvcreate --size 15G -n backup-lv data-vg
+sudo lvs
+sudo lvscan
+```
+
+![Create two Logical Volumes in data-vg](./screenshots/create_lvs.png)
+
+```
+sudo lvdisplay /dev/data-vg/data-lv
+```
+
+![Display more info about data-lv](./screenshots/display_lv_data.png)
+
+### Extend a Logical Volume
+
+#### Extend Logical Volume by Size
+
+```
+lsblk /dev/sd{b,c,d}
+sudo lvs
+vgs
+sudo lvextend --size +10G /dev/date-vg/data-lv
+sudo lvs
+sudo vgs
+```
+
+![Extending data-lv by 10G](./screenshots/extend_lv_size.png)
+
+```
+lsblk /dev/sd{b,c,d}
+```
+
+![Display how the lvs use the block devices](./screenshots/lsblk_lvextend1.png)
+
+#### Extend Logical Volume by a Physical Volume
+
+```
+lsblk /dev/sd{b,c,d}
+sudo lvextend /dev/data-vg/data-lv /dev/sdd2
+lsblk /dev/sd{b,c,d}
+sudo lvs
+```
+
+![Extend a logical volume by a physical volume](./screenshots/extend_lv_pv.png)
+
+#### Extend Logical Volume by percentage of free left in Volume Group
+
+```
+sudo vgs
+sudo lvextend --extents +100%FREE /dev/data-vg/backup-lv
+sudo vgs
+lsblk /dev/sd{b,c,d}
+```
+
+![Extend by using percentage of free space in vg](./screenshots/extend_lv_vg.png)
+
+## Quick Test of Logical Volume
+
+```
+sudo mkfs.ext4 /dev/data-vg/data-lv
+sudo mkdir /data
+sudo mount /dev/data-vg/data-lv /data
+lsblk /dev/sd{b,c,d}
+mount | tail -n 1
+```
+
+![Make a fs and mounting data-lv](./screenshots/test_lv_data.png)
+
+# References
+
+1. man pages
+
 
